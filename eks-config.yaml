@@ -1,0 +1,39 @@
+apiVersion: eksctl.io/v1alpha5            # eksctl 集群配置 API 版本
+kind: ClusterConfig                      # eksctl 的资源类型
+metadata:                                # 集群元数据块
+  name: zhoujie-devsecops-eks               # EKS 集群名称
+  region: us-east-2                     # 集群所在的 AWS 区域
+  version: "1.32"                        # Kubernetes 控制平面版本
+  tags:                                  # 用于标识资源的标签
+    owner: zhoujie                      # 标签：所有者
+    environment: training                 # 标签：环境
+    project: zhoujie-devsecops-demo         # 标签：项目
+    purpose: test                       # 标签：用途
+availabilityZones:                        # 用于节点放置的可用区
+  - us-east-2a                           # 可用区 1
+  - us-east-2b                           # 可用区 2
+iam:                                      # IAM/OIDC 设置
+  withOIDC: true                         # 为 IRSA 启用 IAM OIDC 提供者
+managedNodeGroups:                        # 定义托管节点组
+  - name: zhoujie-ng-public                  # 节点组名称
+    instanceType: t3.small                # 工作节点的 EC2 实例类型
+    minSize: 1                            # 节点组中的最小节点数
+    maxSize: 2                            # 节点组中的最大节点数
+    desiredCapacity: 1                    # 创建时的期望节点数量
+    volumeSize: 20                        # 根磁盘大小（GiB）
+    privateNetworking: false              # 节点获取公网网络配置
+    ssh:                                  # SSH 配置
+      allow: true                         # 允许 SSH 访问节点
+      publicKeyName: zhoujie-aws-Ohio       # 用于 SSH 的 EC2 密钥对名称
+    iam:                                  # 每个节点组的 IAM 设置
+      withAddonPolicies:                  # 启用插件策略
+        autoScaler: true                  # 允许使用集群自动伸缩器
+        ebs: true                         # 允许使用 EBS 卷
+        albIngress: true                  # 允许使用 ALB Ingress 插件
+        externalDNS: true                 # 允许使用 ExternalDNS 插件
+    labels:                               # 用于调度的节点标签
+      owner: zhoujie                      # 节点标签：所有者
+      app: devsecops-demo                 # 节点标签：应用
+    tags:                                 # 节点级别的标签
+      node-type: public-worker            # 自定义标签：节点类型
+      managed-by: eksctl                  # 自定义标签：由 eksctl 管理

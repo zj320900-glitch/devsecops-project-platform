@@ -6,7 +6,7 @@ pipeline {
   environment {
     SONAR_IP = '3.15.143.4'
     ECR_REGISTRY = '253685958295.dkr.ecr.us-east-2.amazonaws.com'
-    IMAGE_REPO = "${ECR_REGISTRY}/zhoujie-devsecops-demo-2"
+    IMAGE_REPO = "${ECR_REGISTRY}/zhoujie-devsecops-demo"
   }
   stages {
     stage('Trivy FS Scan') {
@@ -46,5 +46,10 @@ pipeline {
         sh 'docker push "$IMAGE_REPO:latest"'
       }
     }
+    stage('Update Deployment') {
+      steps {
+        sh 'sed -i "s|image:.*|image: $IMAGE_REPO:$BUILD_NUMBER|g" deploy-svc.yaml'
+      }
+    }
   }
-}
+}  
