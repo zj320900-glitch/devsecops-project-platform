@@ -51,5 +51,23 @@ pipeline {
         sh 'sed -i "s|image:.*|image: $IMAGE_REPO:$BUILD_NUMBER|g" deploy-svc.yaml'
       }
     }
+    stage('Deploy to Kubernetes') {
+      steps {
+        sh '''#!/bin/bash -l
+aws eks update-kubeconfig \
+  --region us-east-2 \
+  --name zhoujie-devsecops-eks \
+  --kubeconfig /home/jenkins/.kube/config
+
+kubectl create ns zhoujie-devsecops
+kubectl apply -f deploy-svc.yaml
+
+kubectl rollout status -n zhoujie-devsecops deployment/zhoujie-devsecops-demo --timeout=60s || {
+  kubectl rollout undo -n zhoujie-devsecops deployment/zhoujie-devsecops-demo || true
+  exit 1
+}
+'''
+      }
+    }
   }
-}  
+}
