@@ -27,7 +27,7 @@ spec:
           image: 253685958295.dkr.ecr.us-east-2.amazonaws.com/zhoujie-devsecops-demo:23  
           ports:  
             - containerPort: 8080  
---------------------------
+---
 apiVersion: v1  
 kind: Service  
 metadata:  
