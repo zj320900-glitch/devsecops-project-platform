@@ -18,10 +18,10 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
           sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=zhoujie-devsecops-demo \
-  -Dsonar.host.url="http://${SONAR_IP}:9000" \
-  -Dsonar.token="${SONAR_TOKEN}" \
-  -Dsonar.qualitygate.wait=true'
+            -Dsonar.projectKey=zhoujie-devsecops-demo \
+            -Dsonar.host.url="http://${SONAR_IP}:9000" \
+            -Dsonar.token="${SONAR_TOKEN}" \
+            -Dsonar.qualitygate.wait=true'
         }
       }
     }
@@ -35,5 +35,11 @@ pipeline {
         sh 'export DOCKER_BUILDKIT=0 && docker build --platform linux/amd64 -t "$IMAGE_REPO:$BUILD_NUMBER" -t "$IMAGE_REPO:latest" .'
       }
     }
+    stage('Trivy Image Scan') {
+      steps {
+        sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL "$IMAGE_REPO:$BUILD_NUMBER"'
+      }
+    }
   }
 }
+
