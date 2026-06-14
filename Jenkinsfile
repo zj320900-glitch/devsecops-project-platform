@@ -6,7 +6,7 @@ pipeline {
   environment {
     SONAR_IP = '3.15.143.4'
     ECR_REGISTRY = '253685958295.dkr.ecr.us-east-2.amazonaws.com'
-    IMAGE_REPO = "${ECR_REGISTRY}/zhoujie-devsecops-demo"
+    IMAGE_REPO = "${ECR_REGISTRY}/zhoujie-devsecops-demo-2"
   }
   stages {
     stage('Trivy FS Scan') {
