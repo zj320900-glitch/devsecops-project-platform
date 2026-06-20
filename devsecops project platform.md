@@ -1202,9 +1202,9 @@ git remote set-url private-repo https://github.com/zj320900-glitch/zhoujie-priva
 
 - 姓名 →`zhoujie-devsecops-demo`
 
-- 类型 →**管道**
+- 类型 →**pipeline**
 
-- 滚动至“管道”部分
+- 滚动至“pipeline”部分
 
 	- 定义：**来自 SCM 的流水线脚本**
 
@@ -1558,7 +1558,7 @@ Jenkins → 管理 Jenkins → 全局工具配置 → Maven，点击新增maven
 
 ------
 
-## **包含第三阶段的管道**
+## **包含第三阶段的pipeline**
 
 
 
@@ -2261,7 +2261,7 @@ pipeline {
 
 ------
 
-## **第 7 阶段：推送至 ECR（将构建好的镜像推送至 Amazon ECR）**
+## **第七阶段：推送至 ECR（将构建好的镜像推送至 Amazon ECR）**
 
 
 
@@ -2275,7 +2275,7 @@ pipeline {
 
 ------
 
-### **管道片段**
+### **pipeline片段**
 
 
 
@@ -2375,8 +2375,7 @@ pipeline {
 
 ------
 
-## **第 8 阶段：创建 Kubernetes 清单（Deployment + Service）**
-
+## **第八阶段：创建 Kubernetes 清单（Deployment + Service）**
 
 
 *（参考：管道图中的“创建清单”框）*
