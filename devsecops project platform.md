@@ -1,6 +1,3 @@
-[TOC]
-
-
 
 # 完整的 DevSecOps CI/CD 流水线 | 多可用区 Amazon EKS + Jenkins + Trivy + SonarQube + ECR + GitHub
 
