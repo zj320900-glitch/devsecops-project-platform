@@ -6,7 +6,7 @@
 
 # **介绍**
 
-![](C:\Users\34507\Desktop\devsecops\a2f65408-ed78-4bc8-bdfc-6fcd51d69e6b.png)
+![](./images/a2f65408-ed78-4bc8-bdfc-6fcd51d69e6b.png)
 
 ---
 
