@@ -431,7 +431,7 @@ sudo useradd -m -s /bin/bash jenkins
 
 ## 实验：将 jenkins-agent 添加到 Jenkins 控制器
 
-![](C:\Users\34507\Desktop\devsecops\e88da092-eb4e-47ff-832b-ff6db21ab837.png)
+![](./images/e88da092-eb4e-47ff-832b-ff6db21ab837.png)
 
 通过 SSH 连接到控制器：
 
@@ -1026,7 +1026,7 @@ http://<sonarqube-ec2-public-ip>:9000
 
 ## 我们该怎么办？
 
-![](C:\Users\34507\Desktop\devsecops\a2f65408-ed78-4bc8-bdfc-6fcd51d69e6b.png)
+![](./images/a2f65408-ed78-4bc8-bdfc-6fcd51d69e6b.png)
 
 在本演示中，我们使用**Jenkins**、**Trivy**、**SonarQube**、**AWS ECR**和**Amazon EKS**构建了一个**生产级 DevSecOps 流水线**。该流水线通过**扫描源代码**、**运行单元测试**、**执行静态分析**、**扫描容器镜像等****多重安全机制**来确保安全，并且**只有在所有阶段都通过验证后才进行部署**。我们遵循**最小权限原则**，使用**不可变的镜像标签**，并在完成部署前**验证部署的健康状况。**
 
@@ -1878,7 +1878,7 @@ aws ecr get-login-password --region ap-south-1 | docker login --username AWS --p
 
 ------
 
-### **包含 ECR 登录的管道（第 4 阶段）**
+### **包含 ECR 登录的pipeline（第 4 阶段）**
 
 如果你的Jenkins是部署在AWS外的，你可以使用AWS秘密密钥或有其他办法来访问AWS ECR，Jenkins部署在AWS内部就可以使用IAM来进行访问
 
@@ -2180,7 +2180,7 @@ Trivy Image Scan 分析**最终的容器图像**，包括：
 
 ------
 
-## **带有 Trivy 图像扫描阶段的管道**
+## **带有 Trivy 图像扫描阶段的pipeline**
 
 
 
@@ -2702,7 +2702,7 @@ kubectl rollout status -n zhoujie-devsecops deployment/zhoujie-devsecops-demo --
 
 为了更清晰地表达，请创建`eks-config.yaml`并添加以下单行注释：
 
-![](C:\Users\34507\Desktop\devsecops\1757a036-54fa-4b9e-bf98-2be671ae16ea.png)
+![](./images/1757a036-54fa-4b9e-bf98-2be671ae16ea.png)
 
 AWS托管框里的部分不用我们管理，由Amazon帮我们管理，我们只需要管理客户自管框里的东西
 
