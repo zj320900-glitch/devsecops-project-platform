@@ -3126,7 +3126,7 @@ kubectl rollout status -n zhoujie-devsecops deployment/zhoujie-devsecops-demo --
 
 ------
 
-### **管道片段**
+### **pipeline片段**
 
 
 
